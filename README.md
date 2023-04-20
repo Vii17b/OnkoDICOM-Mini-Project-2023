@@ -1,2 +1,3 @@
-# OnkoDICOM-Mini-Project-2023
-The team based in 2023
+OnkoDICOM-Mini-Project-2023
+
+Open and display DICOM file
