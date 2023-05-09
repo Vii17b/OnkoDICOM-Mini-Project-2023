@@ -1,5 +1,7 @@
-from config import read_config
+""" Tests for config.py """
+
+from models.config import config
 
 
-def test_configeration():
-    read_config()
+def test_config():
+    config = config.Config()
