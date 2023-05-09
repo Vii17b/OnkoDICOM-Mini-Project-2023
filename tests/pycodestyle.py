@@ -1,4 +1,4 @@
-#import needed package
+# Import needed package
 import pycodestyle
 
 # Create a StyleGuide instance
