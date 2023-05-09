@@ -1,4 +1,4 @@
-""""
+"""
 Reads the config file
 """
 
@@ -6,20 +6,20 @@ import os
 import sqlite3
 
 
-class Config():
-    """"
+class Config:
+    """
     Reads the config file
     """
+
     def __init__(self):
         # Locate the database file
         home_dir = os.path.expanduser("~")
-        hidden_dir = home_dir+"/.OnkoDICOM"
+        hidden_dir = home_dir + "/.OnkoDICOM"
         fname = "/OnkoDICOM.db"
-        dbfile = hidden_dir+fname
+        dbfile = hidden_dir + fname
 
         # Checks if the config file exists. if it doesnt then create it
         if not os.path.exists(dbfile):
-
             # If the hidden direcroty does not exist then create it
             if not os.path.exists(hidden_dir):
                 os.mkdir(hidden_dir)
@@ -62,10 +62,11 @@ class Config():
         # Write to the database
         conn.execute(
             """CREATE TABLE CONFIGURATION(id INTEGER PRIMARY KEY,
-            default_dir TEXT, csv_dir TEXT)""")
+            default_dir TEXT, csv_dir TEXT)"""
+        )
         conn.execute(
-            "INSERT INTO CONFIGURATION VALUES (?, ?, ?)",
-            (f_id, dflt_dir, csv))
+            "INSERT INTO CONFIGURATION VALUES (?, ?, ?)", (f_id, dflt_dir, csv)
+        )
         conn.commit()
 
         # Close the database connection
