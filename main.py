@@ -14,6 +14,7 @@ class App(QApplication):
     """
     Instantiates MVC architecture
     """
+
     def __init__(self, sys_args) -> None:
         super().__init__(sys_args)
         self.model = MainModel(self)
