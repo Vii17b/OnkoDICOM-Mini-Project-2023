@@ -9,21 +9,21 @@ from PIL import Image, ImageQt
 from PySide6.QtGui import QPixmap
 
 
-class DicomParser():
+class DicomParser:
     """
     The model class for handling interactions with DICOM files
     """
+
     def __init__(self, file_dir) -> None:
         self.files = list(
-            dcmread(file_dir + "/" + f) for f
-            in self.get_dcm_from_file(file_dir)
+            dcmread(file_dir + "/" + f) for f in self.get_dcm_from_file(file_dir)
         )
         self.num_images = len(self.files)
 
         # Search for supplied tags
         # This doesn't have an actual purpose, so we just sample the first
         # image for demonstation purposes
-        tags_list = ['StudyInstanceUID', 'fakeTestTag']
+        tags_list = ["StudyInstanceUID", "fakeTestTag"]
         for tag in tags_list:
             try:
                 print(self.files[0][tag])
@@ -40,7 +40,7 @@ class DicomParser():
         for file in files_in_dir:
             if file.endswith(".dcm"):
                 try:
-                    index = int(file.split('_')[1])
+                    index = int(file.split("_")[1])
                     indexed_files[index] = file
                 except ValueError:
                     # A valueError means the file doesn't match the
