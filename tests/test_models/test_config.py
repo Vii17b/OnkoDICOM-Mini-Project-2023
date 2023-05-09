@@ -4,4 +4,4 @@ from models.config import config
 
 
 def test_config():
-    config = config.Config()
+    """Tests for config.py"""
