@@ -1,19 +1,17 @@
-"""
-Connects to the database in the hiden directory
+""""
+Reads the config file
 """
 
 import os
 import sqlite3
-import platform
 
 
 class Config():
+    """"
+    Reads the config file
     """
-    Docstring
-    """
-    def __init__(self) -> None:
+    def __init__(self):
         # Locate the database file
-        system = platform.system()
         home_dir = os.path.expanduser("~")
         hidden_dir = home_dir+"/.OnkoDICOM"
         fname = "/OnkoDICOM.db"
@@ -29,22 +27,18 @@ class Config():
             # Writing random values currently, replace with actual data
             self.write_config(dbfile, 0, home_dir, home_dir)
 
-        # Read the config file
+        # Read the config file and return
         results = self.read_config(dbfile)
+        self.db_id = results[0]
+        self.default_dir = results[1]
+        self.csv_dir = results[2]
 
-        # I'm using the variables in my own config file
-        # if they can vary between users,
-        # use the results array instead of these variables
-        id = results[0]
-        default_dir = results[1]
-        csv_dir = results[2]
-
-    def read_config(self, dbfile):
+    def read_config(self, dbf):
         """
         Reads the config file and returns an array
         """
         # Connect to the database
-        conn = sqlite3.connect(dbfile)
+        conn = sqlite3.connect(dbf)
 
         # Create a cursor object
         cursor = conn.cursor()
@@ -52,47 +46,31 @@ class Config():
         # Query the database for the single row of data
         query = "SELECT * FROM CONFIGURATION"
         cursor.execute(query)
-        results = cursor.fetchone()
+        out = cursor.fetchone()
 
         # Close the database connection and return results
         conn.close()
-        return results
+        return out
 
-    def write_config(self, dbfile, id, default_dir, csv_dir):
+    def write_config(self, dbf, f_id, dflt_dir, csv):
         """
-        Creates and writes the config file
+        Make + write config file
         """
         # Connect to the database
-        conn = sqlite3.connect(dbfile)
-
-        # Create a cursor object
-        cursor = conn.cursor()
+        conn = sqlite3.connect(dbf)
 
         # Write to the database
-        conn.execute("""
-            CREATE TABLE CONFIGURATION(
-                id INTEGER PRIMARY KEY,
-                default_dir TEXT,
-                csv_dir TEXT
-            )
-        """)
+        conn.execute(
+            """CREATE TABLE CONFIGURATION(id INTEGER PRIMARY KEY,
+            default_dir TEXT, csv_dir TEXT)""")
         conn.execute(
             "INSERT INTO CONFIGURATION VALUES (?, ?, ?)",
-            (id, default_dir, csv_dir)
-        )
+            (f_id, dflt_dir, csv))
         conn.commit()
 
         # Close the database connection
         conn.close()
 
-    def config_file_exists(self, dbfile):
-        """
-        Returns whether the config file exists
-        """
-        if os.path.exists(dbfile):
-            return True
-        else:
-            return False
 
 if __name__ == "__main__":
     con = Config()
