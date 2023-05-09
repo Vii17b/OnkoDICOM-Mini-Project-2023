@@ -37,10 +37,9 @@ def write_config(dbf, f_id, dflt_dir, csv):
     # Write to the database
     conn.execute(
         """CREATE TABLE CONFIGURATION(id INTEGER PRIMARY KEY,
-        default_dir TEXT, csv_dir TEXT)""")
-    conn.execute(
-        "INSERT INTO CONFIGURATION VALUES (?, ?, ?)",
-        (f_id, dflt_dir, csv))
+        default_dir TEXT, csv_dir TEXT)"""
+    )
+    conn.execute("INSERT INTO CONFIGURATION VALUES (?, ?, ?)", (f_id, dflt_dir, csv))
     conn.commit()
 
     # Close the database connection
@@ -58,13 +57,12 @@ def config_file_exists(dbf):
 system = platform.system()
 # Locate the database file
 home_dir = os.path.expanduser("~")
-hidden_dir = home_dir+"/.OnkoDICOM"
+hidden_dir = home_dir + "/.OnkoDICOM"
 FNAME = "/OnkoDICOM.db"
-dbfile = hidden_dir+FNAME
+dbfile = hidden_dir + FNAME
 
 # Checks if the config file exists. if it doesnt then create it
 if not os.path.exists(dbfile):
-
     # If the hidden direcroty does not exist then create it
     if not os.path.exists(hidden_dir):
         os.mkdir(hidden_dir)
