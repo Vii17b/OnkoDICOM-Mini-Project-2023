@@ -29,9 +29,10 @@ class Config:
 
         # Read the config file and return
         results = self.read_config(dbfile)
-        self.db_id = results[0]
-        self.default_dir = results[1]
-        self.csv_dir = results[2]
+        # self.db_id = results[0]
+        # self.default_dir = results[1]
+        # self.csv_dir = results[2]
+        self.default_dir = "/home/osboxes/Mini2/TestFiles/DICOM-RT-01"
 
     def read_config(self, dbf):
         """

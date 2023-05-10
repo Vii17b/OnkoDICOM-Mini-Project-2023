@@ -3,7 +3,7 @@ Instantiates QApplication class, and execute
 """
 
 import sys
-from PySide6.QtCore import QApplication
+from PySide6.QtWidgets import QApplication
 
 from models.main_model import MainModel
 from views.main_view import MainView
@@ -18,8 +18,8 @@ class App(QApplication):
     def __init__(self, sys_args) -> None:
         super().__init__(sys_args)
         self.model = MainModel(self)
-        self.controller = MainController(self, self.model)
-        self.view = MainView(self, self.controller)
+        self.controller = MainController(self.model, self)
+        self.view = MainView(self.controller, self)
         self.view.show()
 
 

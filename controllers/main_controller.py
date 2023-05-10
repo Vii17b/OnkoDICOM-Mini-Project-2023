@@ -14,7 +14,8 @@ controller/main_controller.py
 """
 
 import os
-from PySide6.QtWidgets import QObject
+from turtle import update
+from PySide6.QtCore import QObject
 
 from models.dicom import DicomParser
 from models.config import Config
@@ -65,9 +66,10 @@ class MainController(QObject):
         if os.path.exists(dir):
             # TODO: Update with actual variable names
             # once main model is implemented
-            self._main_model.REPLACE_LATER = dir
-            self._main_model.REPLACE_LATER = 0
+            self._main_model.dicom_directory = dir
+            self._main_model.image_index = 0
             self._dicom_parser.read_directory(dir)
+            self.update_image_view()
             return True
         else:
             print(f"{dir} is not a valid file directory.")
@@ -78,10 +80,11 @@ class MainController(QObject):
         Update the index of the currently selected image
         """
         num_img = self._dicom_parser.num_images
-        if index > 0 and index < num_img:
+        if index >= 0 and index < num_img:
             # TODO: Update with actual variable name
             # once main model is implemented
-            self._main_model.REPLACE_LATER = index
+            self._main_model.image_index = index
+            self.update_image_view()
             return index
         else:
             print(f"Index {index} out of range of dicom images ({num_img})")
@@ -90,12 +93,12 @@ class MainController(QObject):
     def go_to_next_image(self):
         # TODO: Update with actual variable name
         # once main model is implemented
-        self.change_image_index(self._main_model.REPLACE_LATER+1)
+        self.change_image_index(self._main_model.image_index+1)
 
     def go_to_preivous_image(self):
         # TODO: Update with actual variable name
         # once main model is implemented
-        self.change_image_index(self._main_model.REPLACE_LATER-1)
+        self.change_image_index(self._main_model.image_index-1)
 
     def default_directory_prompt(self):
         """
@@ -117,9 +120,10 @@ class MainController(QObject):
         Creates the ImageView popup if it doesn't exist already
         """
 
-        if not self._image_popup:
-            self._image_popup = ImageView()
-            self._image_popup.show()
+        # if not self._image_popup:
+        self._image_popup = ImageView(self)
+        self._image_popup.show()
+        self.update_image_view()
 
     def update_image_view(self):
         """
@@ -133,7 +137,7 @@ class MainController(QObject):
         # once main_model is implemented
         self._image_popup.slider.setMinimum(1)
         self._image_popup.slider.setMaximum(self._dicom_parser.num_images)
-        index = self._main_model.REPLACE_LATER
-        self._image_popup.slider.value = index+1
+        index = self._main_model.image_index
+        self._image_popup.slider.setValue(index+1)
         title = f"Image {index+1}/{self._dicom_parser.num_images}"
         self._image_popup.update(self._dicom_parser.get_image(index), title)

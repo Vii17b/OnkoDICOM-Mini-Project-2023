@@ -2,7 +2,14 @@
 The UI for navigating to the image selector and directory selector
 """
 
-from PySide6.QtWidgets import QMainWindow, QLabel, QPushButton, QHBoxLayout
+from PySide6.QtWidgets import (
+    QMainWindow,
+    QLabel,
+    QPushButton,
+    QHBoxLayout,
+    QWidget
+)
+from PySide6.QtCore import QSize
 
 
 class MainView(QMainWindow):
@@ -21,15 +28,19 @@ class MainView(QMainWindow):
         # Create widgets
         self.info = QLabel()
         self.info.setText("Options: ")
+        self.info.setMinimumSize(QSize(500, 10))
         self.nav_directory = QPushButton("&Browse Files")
         self.nav_directory.clicked.connect(
             self.controller.default_directory_prompt)
+        self.nav_directory.setMinimumSize(QSize(500, 10))
         self.nav_image = QPushButton("&View File")
         self.nav_image.clicked.connect(self.controller.open_image_viewer)
+        self.nav_image.setMinimumSize(QSize(500, 10))
 
         # Create layout
+        self.layout_widget = QWidget(self)
         self.layout = QHBoxLayout()
         self.layout.addWidget(self.info)
         self.layout.addWidget(self.nav_directory)
         self.layout.addWidget(self.nav_image)
-        self.setLayout(self.layout)
+        self.layout_widget.setLayout(self.layout)
