@@ -15,10 +15,21 @@ class DicomParser:
     """
 
     def __init__(self, file_dir) -> None:
+        self.read_directory(file_dir)
+
+    def read_directory(self, file_dir):
+        """
+        Attempts to parse the given directory as a DICOM file
+        """
         self.files = list(
-            dcmread(file_dir + "/" + f) for f in self.get_dcm_from_file(file_dir)
+            dcmread(file_dir + "/" + f)
+            for f in self.get_dcm_from_file(file_dir)
         )
         self.num_images = len(self.files)
+        if self.num_images == 0:
+            # Well that certainly isn't a dicom file then
+            print("The supplied directory is not a dicom file.")
+            return False
 
         # Search for supplied tags
         # This doesn't have an actual purpose, so we just sample the first
@@ -29,11 +40,12 @@ class DicomParser:
                 print(self.files[0][tag])
             except KeyError:
                 print(f"Tag {tag} not found in Dicom File.")
+        return True
 
     def get_dcm_from_file(self, file_dir):
         """
         Returns a dict of all the image files in the directory
-        This method assumes all files are named "CT_#_*.dcm"
+        This method assumes all files are named "*_#_*.dcm"
         """
         files_in_dir = os.listdir(file_dir)
         indexed_files = {}
@@ -44,7 +56,7 @@ class DicomParser:
                     indexed_files[index] = file
                 except ValueError:
                     # A valueError means the file doesn't match the
-                    # "CT_#_*.dcm" format and isn't an image
+                    # "*_#_*.dcm" format and isn't an image
                     pass
 
         # Sorts the files, then returns them in an ordered list
@@ -57,6 +69,10 @@ class DicomParser:
         """
         Returns the image of the index
         """
+        if self.num_images == 0:
+            print("No DICOM file opened.")
+            return None
+
         # The tag corresponding to the image is .pixel_array
         # As the name implies, it is not in an image format
         pixels = self.files[index].pixel_array
