@@ -3,7 +3,7 @@ Updates the Config accordingly"""
 
 from PySide6.QtWidgets import (
     QDialog, QFileDialog, QLabel, QPushButton, QHBoxLayout)
-from PySide6 import QDir
+from PyQt6.QtCore import QDir
 
 
 class DirectoryView(QDialog):
