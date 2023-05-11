@@ -34,6 +34,8 @@ class MainController(QObject):
         self._main_model = model
         self._config = Config()
         self._dicom_parser = DicomParser(self._config.default_dir)
+        self._main_model.dicom_directory = self._config.default_dir
+        self._main_model.index = 0
 
         # views
         self._image_popup = None
@@ -63,12 +65,14 @@ class MainController(QObject):
         """
         Check the directory is valid, then update the model
         """
+        old_dir = self._main_model.dicom_directory
         if os.path.exists(dir):
-            # TODO: Update with actual variable names
-            # once main model is implemented
             self._main_model.dicom_directory = dir
             self._main_model.image_index = 0
-            self._dicom_parser.read_directory(dir)
+            if not self._dicom_parser.read_directory(dir):
+                print(f"{dir} is not a valid file directory")
+                self._dicom_parser.read_directory(old_dir)
+                return False
             self.update_image_view()
             return True
         else:
@@ -91,13 +95,9 @@ class MainController(QObject):
             return -1
 
     def go_to_next_image(self):
-        # TODO: Update with actual variable name
-        # once main model is implemented
         self.change_image_index(self._main_model.image_index+1)
 
     def go_to_preivous_image(self):
-        # TODO: Update with actual variable name
-        # once main model is implemented
         self.change_image_index(self._main_model.image_index-1)
 
     def default_directory_prompt(self):
@@ -117,10 +117,11 @@ class MainController(QObject):
 
     def open_image_viewer(self):
         """
-        Creates the ImageView popup if it doesn't exist already
+        Creates the ImageView popup, replacing the old one if neccessary
         """
 
-        # if not self._image_popup:
+        if self._image_popup:
+            self._image_popup.close()
         self._image_popup = ImageView(self)
         self._image_popup.show()
         self.update_image_view()
@@ -133,8 +134,9 @@ class MainController(QObject):
         if not self._image_popup:
             return False
 
-        # TODO: Update with actual variable name
-        # once main_model is implemented
+        # I know the indexing is wrong, but if it's set to anything but these
+        # exact values it runs HORRIBLY
+        # I could not tell you why
         self._image_popup.slider.setMinimum(1)
         self._image_popup.slider.setMaximum(self._dicom_parser.num_images)
         index = self._main_model.image_index

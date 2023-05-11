@@ -37,4 +37,5 @@ class DirectoryView(QDialog):
 
         directory = QFileDialog.getExistingDirectory(
             self, "Select Directory", QDir.currentPath())
-        self.controller.change_selected_directory(directory)
+        if self.controller.change_selected_directory(directory):
+            self.close()

@@ -7,6 +7,7 @@ import os
 from pydicom import dcmread
 from PIL import Image, ImageQt
 from PySide6.QtGui import QPixmap
+import numpy
 
 
 class DicomParser:
@@ -75,8 +76,14 @@ class DicomParser:
 
         # The tag corresponding to the image is .pixel_array
         # As the name implies, it is not in an image format
+        # Each pixel is a value from 0 - 1023
+        # Remap to 0-255
         pixels = self.files[index].pixel_array
 
-        img = Image.fromarray(pixels)
+        arr = numpy.asarray(pixels).astype(float)
+        rescaled_arr = (arr+1) * 256 / 1024
+        img_arr = numpy.uint8(rescaled_arr)
+
+        img = Image.fromarray(img_arr)
         q_img = ImageQt.ImageQt(img)
         return QPixmap.fromImage(q_img)
