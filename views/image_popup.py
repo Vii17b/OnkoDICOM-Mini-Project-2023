@@ -22,7 +22,7 @@ class ImageView(QWidget):
         self.slider = QSlider(self, QtCore.Qt.Horizontal)
         self.slider.setOrientation(QtCore.Qt.Horizontal)
         self.slider.sliderMoved.connect(
-            lambda: controller.change_image_index(self.slider.value()))
+            lambda: controller.change_image_index(self.slider.value()-1))
         self.slider.setMinimumSize(QtCore.QSize(500, 10))
 
         # Create layout
