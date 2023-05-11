@@ -140,6 +140,6 @@ class MainController(QObject):
         self._image_popup.slider.setMinimum(1)
         self._image_popup.slider.setMaximum(self._dicom_parser.num_images)
         index = self._main_model.image_index
-        self._image_popup.slider.setValue(index+1)
+        # self._image_popup.slider.setValue(index+1)
         title = f"Image {index+1}/{self._dicom_parser.num_images}"
         self._image_popup.update(self._dicom_parser.get_image(index), title)
