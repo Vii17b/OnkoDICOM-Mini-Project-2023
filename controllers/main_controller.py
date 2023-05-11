@@ -26,6 +26,7 @@ class MainController(QObject):
     """
     Docstring
     """
+
     def __init__(self, model, parent=None) -> None:
         super().__init__(parent)
 
@@ -90,12 +91,12 @@ class MainController(QObject):
     def go_to_next_image(self):
         # TODO: Update with actual variable name
         # once main model is implemented
-        self.change_image_index(self._main_model.REPLACE_LATER+1)
+        self.change_image_index(self._main_model.REPLACE_LATER + 1)
 
     def go_to_preivous_image(self):
         # TODO: Update with actual variable name
         # once main model is implemented
-        self.change_image_index(self._main_model.REPLACE_LATER-1)
+        self.change_image_index(self._main_model.REPLACE_LATER - 1)
 
     def default_directory_prompt(self):
         """
@@ -134,6 +135,6 @@ class MainController(QObject):
         self._image_popup.slider.setMinimum(1)
         self._image_popup.slider.setMaximum(self._dicom_parser.num_images)
         index = self._main_model.REPLACE_LATER
-        self._image_popup.slider.value = index+1
+        self._image_popup.slider.value = index + 1
         title = f"Image {index+1}/{self._dicom_parser.num_images}"
         self._image_popup.update(self._dicom_parser.get_image(index), title)

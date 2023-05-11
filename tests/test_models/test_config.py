@@ -1,4 +1,6 @@
-""" Tests for config.py """
+"""
+Tests for config.py
+"""
 
 from os.path import dirname
 from models.config import config
