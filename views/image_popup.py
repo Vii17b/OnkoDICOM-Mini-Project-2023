@@ -1,16 +1,39 @@
-"""
-Shows the image from the controller
-Has a slider to slide through the images
-"""
+"""Shows the image from the controller
+Has a slider to slide through the images"""
 
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QLabel, QSlider, QGridLayout
+from PySide6 import QtCore
 
 
-class Popup(QWidget):
-    """
-    A popup view that displays the DICOM image
-    If the slider is changed ore the left/right buttons are pressed
-    the label should update to show (Image X/Y) and the image should update
-    """
-    def __init__(self, parent=None) -> None:
-        super().__init__(parent)
+class ImageView(QWidget):
+    """Class for the image popup"""
+
+    def __init__(self, controller):
+
+        """ Creates the structure for the image window"""
+
+        super().__init__()
+
+        self.setWindowTitle("Image Display")
+
+        # Create widgets
+        self.image_title = QLabel()
+        self.image = QLabel()
+        self.slider = QSlider(self, QtCore.Qt.Horizontal)
+        self.slider.setOrientation(QtCore.Qt.Horizontal)
+        self.slider.sliderMoved.connect(
+            lambda: controller.update_image(self.slider.value()))
+
+        # Create layout
+        self.layout = QGridLayout()
+        self.layout.addWidget(self.image_title, 0, 0, QtCore.Qt.AlignCenter)
+        self.layout.addWidget(self.image, 1, 0, QtCore.Qt.AlignCenter)
+        self.layout.addWidget(self.slider, 2, 0, QtCore.Qt.AlignCenter)
+        self.setLayout(self.layout)
+
+    def update(self, img, title):
+
+        """ Updates the image window"""
+
+        self.image.setPixmap(img)
+        self.image_title.setText(title)

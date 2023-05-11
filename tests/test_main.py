@@ -2,12 +2,12 @@
 Tests for main.py
 """
 import pytest
-from main import App
+from main import main
 
 
 @pytest.fixture
 def test_app(qtbot):
-    test_app
+    test_app = main.App()
     qtbot.addWidget(test_app)
     return test_app
 
