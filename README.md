@@ -32,10 +32,10 @@ Download and execute installation script
 
 Add the following entries into your ~/.bashrc file
 
-``# pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"``
+`# pyenv`
+`export PATH="$HOME/.pyenv/bin:$PATH"`
+`eval "$(pyenv init --path)"`
+`eval "$(pyenv virtualenv-init -)"`
 
 Restart your shell
 
@@ -64,6 +64,8 @@ Mini project use Poetry, to download poetry
 Add Poetry to your PATH according to the instruction shows on the terminal.
 
 # To run the program
+Before running the program, download the DICOM files first from the ONKODicom Wiki [ONKODicom](https://github.com/didymo/OnkoDICOM/wiki/Data-to-pracise)
+
 Clone the Mini Project repository: 
 
 `git clone https://github.com/Vii17b/OnkoDICOM-Mini-Project-2023.git`
