@@ -2,7 +2,7 @@
 Tests for config.py
 """
 from os.path import dirname
-from models import config
+from models import main_model
 from controllers import main_controller
 
 

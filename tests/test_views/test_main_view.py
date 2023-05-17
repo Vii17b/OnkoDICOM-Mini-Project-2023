@@ -8,6 +8,8 @@ from views.main_view import MainView
 
 
 def test_main_view(qtbot):
+    model = main_model.MainModel()
+
     controller = main_controller.MainController(model)
 
     main_view = MainView(controller)

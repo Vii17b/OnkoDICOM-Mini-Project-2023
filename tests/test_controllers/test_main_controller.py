@@ -11,5 +11,3 @@ def test_main_controller(qtbot):
 
     controller = main_controller.MainController(model)
     controller.change_selected_directory("dicom_file")
-
-    assert controller.config() is not None
