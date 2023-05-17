@@ -12,4 +12,4 @@ def test_main_controller(qtbot):
 
     controller.change_selected_directory("dicom_file")
 
-    assert controller.get_config() is not None
+    assert controller.config() is not None
