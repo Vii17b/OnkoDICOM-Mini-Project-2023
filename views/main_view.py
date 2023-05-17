@@ -2,7 +2,15 @@
 The UI for navigating to the image selector and directory selector
 """
 
-from PySide6.QtWidgets import QMainWindow, QLabel, QPushButton, QHBoxLayout
+from PySide6.QtWidgets import (
+    QMainWindow,
+    QLabel,
+    QPushButton,
+    QHBoxLayout,
+    QWidget,
+    QFileDialog
+)
+from PySide6.QtCore import QSize, QDir
 
 
 class MainView(QMainWindow):
@@ -21,15 +29,29 @@ class MainView(QMainWindow):
         # Create widgets
         self.info = QLabel()
         self.info.setText("Options: ")
+        self.info.setMinimumSize(QSize(200, 20))
         self.nav_directory = QPushButton("&Browse Files")
         self.nav_directory.clicked.connect(
-            self.controller.default_directory_prompt)
+            self.selection)
+        self.nav_directory.setMinimumSize(QSize(200, 20))
         self.nav_image = QPushButton("&View File")
         self.nav_image.clicked.connect(self.controller.open_image_viewer)
+        self.nav_image.setMinimumSize(QSize(200, 20))
 
         # Create layout
+        self.layout_widget = QWidget(self)
+        self.layout_widget.setMinimumSize(QSize(640, 60))
         self.layout = QHBoxLayout()
         self.layout.addWidget(self.info)
         self.layout.addWidget(self.nav_directory)
         self.layout.addWidget(self.nav_image)
-        self.setLayout(self.layout)
+        self.layout_widget.setLayout(self.layout)
+
+    def selection(self):
+        """
+        Opens the directory selection, returns the directory
+        """
+
+        directory = QFileDialog.getExistingDirectory(
+            self, "Select Directory", QDir.currentPath())
+        self.controller.change_selected_directory(directory)
