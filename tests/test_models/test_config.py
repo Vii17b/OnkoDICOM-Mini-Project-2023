@@ -3,6 +3,7 @@ Tests for config.py
 """
 from os.path import dirname
 from models import config
+from controllers import main_controller
 
 
 def test_configeration():
