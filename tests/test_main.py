@@ -4,6 +4,7 @@ Tests for main.py
 
 import pytest
 from main import App
+from PySide6.QtWidgets import QApplication
 
 
 @pytest.fixture
@@ -11,7 +12,8 @@ def test_app(qtbot):
     """
     Sets up application for testing
     """
-    test_app = App()
+    test_app = App(QApplication)
+    qtbot.addWidget(test_app)
     return test_app
 
 
