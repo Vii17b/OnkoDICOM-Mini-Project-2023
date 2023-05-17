@@ -8,7 +8,7 @@ from PySide6.QtWidgets import (
     QPushButton,
     QHBoxLayout,
     QWidget,
-    QFileDialog
+    QFileDialog,
 )
 from PySide6.QtCore import QSize, QDir
 
@@ -17,7 +17,6 @@ class MainView(QMainWindow):
     """The UI for navigating to the image selector and directory selector"""
 
     def __init__(self, controller):
-
         """Creates the widgets and layout"""
 
         super().__init__()
@@ -31,8 +30,7 @@ class MainView(QMainWindow):
         self.info.setText("Options: ")
         self.info.setMinimumSize(QSize(200, 20))
         self.nav_directory = QPushButton("&Browse Files")
-        self.nav_directory.clicked.connect(
-            self.selection)
+        self.nav_directory.clicked.connect(self.selection)
         self.nav_directory.setMinimumSize(QSize(200, 20))
         self.nav_image = QPushButton("&View File")
         self.nav_image.clicked.connect(self.controller.open_image_viewer)
@@ -53,5 +51,6 @@ class MainView(QMainWindow):
         """
 
         directory = QFileDialog.getExistingDirectory(
-            self, "Select Directory", QDir.currentPath())
+            self, "Select Directory", QDir.currentPath()
+        )
         self.controller.change_selected_directory(directory)
