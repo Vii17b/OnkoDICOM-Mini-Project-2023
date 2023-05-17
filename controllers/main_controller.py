@@ -26,6 +26,7 @@ class MainController(QObject):
     """
     Docstring
     """
+
     def __init__(self, model, parent=None) -> None:
         super().__init__(parent)
 
@@ -101,10 +102,10 @@ class MainController(QObject):
             return -1
 
     def go_to_next_image(self):
-        self.change_image_index(self._main_model.image_index+1)
+        self.change_image_index(self._main_model.image_index + 1)
 
     def go_to_preivous_image(self):
-        self.change_image_index(self._main_model.image_index-1)
+        self.change_image_index(self._main_model.image_index - 1)
 
     def default_directory_prompt(self, config, dbfile):
         """
