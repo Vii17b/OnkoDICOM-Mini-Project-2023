@@ -15,5 +15,3 @@ def test_config():
     controller.change_selected_directory("dicom_file")
 
     configuration = config.Config(controller)
-    parent_directory = dirname(__file__).split("\\src")[0]
-    configuration.update_default_dir(f"{parent_directory}")

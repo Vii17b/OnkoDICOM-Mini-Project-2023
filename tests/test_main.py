@@ -12,7 +12,6 @@ def test_app(qtbot):
     Sets up application for testing
     """
     test_app = App()
-    qtbot.addWidget(test_app)
     return test_app
 
 
