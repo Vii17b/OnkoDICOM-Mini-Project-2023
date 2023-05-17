@@ -2,7 +2,7 @@
 Tests for main.py
 """
 import pytest
-from src.onko_dicom import OnkoDicom
+from main import App
 
 
 @pytest.fixture
@@ -10,7 +10,7 @@ def test_app(qtbot):
     """
     Sets up application for testing
     """
-    test_app = OnkoDicom()
+    test_app = App()
     qtbot.addWidget(test_app)
     return test_app
 
