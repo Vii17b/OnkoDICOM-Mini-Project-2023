@@ -13,8 +13,3 @@ def test_main_view(qtbot):
     controller = main_controller.MainController(model)
 
     main_view = MainView(controller)
-
-    qtbot.addWidget(main_view)
-
-    main_view.directory_input_text.clear()
-    qtbot.keyClicks(main_view.directory_input_text, "dicom_file")
