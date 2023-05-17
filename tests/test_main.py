@@ -2,16 +2,20 @@
 Tests for main.py
 """
 import pytest
-from main import main
+from src.onko_dicom import OnkoDicom
 
 
 @pytest.fixture
 def test_app(qtbot):
-    test_app = main.App()
+    """
+    Sets up application for testing
+    """
+    test_app = OnkoDicom()
     qtbot.addWidget(test_app)
     return test_app
 
 
 def test_startup(test_app):
-    assert test_app.windowTitle() == "OnkoDICOM 2023 Mini Project"
+    """Tests window startup, ensuring it runs"""
+    assert test_app.windowTitle() == "OnkoDICOM 2022 Mini Project"
     assert test_app.plot_w
