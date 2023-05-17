@@ -33,8 +33,11 @@ Download and execute installation script
 Add the following entries into your ~/.bashrc file
 
 `# pyenv`
+
 `export PATH="$HOME/.pyenv/bin:$PATH"`
+
 `eval "$(pyenv init --path)"`
+
 `eval "$(pyenv virtualenv-init -)"`
 
 Restart your shell
