@@ -2,7 +2,7 @@
 Tests for config.py
 """
 from os.path import dirname
-from models.config import config
+from models import config
 
 
 def test_configeration():
