@@ -3,19 +3,20 @@ Updates the Config accordingly"""
 
 from PySide6.QtWidgets import (
     QDialog, QFileDialog, QLabel, QPushButton, QHBoxLayout)
-from PyQt6.QtCore import QDir
+from PySide6.QtCore import QDir
 
 
 class DirectoryView(QDialog):
     """Popup view that prompts the user to supply a default directory"""
 
-    def __init__(self, controller):
+    def __init__(self, config, dbfile):
 
         """Creates the window for openening directory selection"""
 
         super().__init__()
         self.resize(400, 300)
-        self.controller = controller
+        self.config = config
+        self.dbfile = dbfile
 
         self.setWindowTitle("Directory Selection")
 
@@ -37,4 +38,5 @@ class DirectoryView(QDialog):
 
         directory = QFileDialog.getExistingDirectory(
             self, "Select Directory", QDir.currentPath())
-        self.controller.change_selected_directory(directory)
+        self.config.supply_default_directory(self.dbfile, directory)
+        self.close()
