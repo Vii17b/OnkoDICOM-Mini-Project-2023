@@ -2,11 +2,7 @@
 Tests for main_controller.py
 """
 
-from models.dicom import DicomParser
-from models.config import Config
-
-from views.image_popup import ImageView
-from views.directory_popup import DirectoryView
+from models import main_model
 
 
 def test_main_controller(qtbot):
