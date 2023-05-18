@@ -3,7 +3,7 @@ Tests for main.py
 """
 
 import pytest
-from main.py import App
+from main import App
 
 
 @pytest.fixture
