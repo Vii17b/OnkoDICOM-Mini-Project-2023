@@ -5,7 +5,6 @@ Tests for main.py
 import pytest
 from main import App
 
-
 @pytest.fixture
 def test_app(qtbot):
     test_app = App()
