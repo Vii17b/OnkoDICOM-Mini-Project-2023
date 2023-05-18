@@ -6,7 +6,7 @@ import pytest
 
 import sys
 
-from main.py import App
+from main import App
 
 
 @pytest.fixture
