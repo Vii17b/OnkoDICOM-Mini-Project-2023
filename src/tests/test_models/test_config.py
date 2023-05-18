@@ -1,15 +1,15 @@
 """
 Tests for config.py
 """
-from os.path import dirname
-from models import main_model
-from models import config
-from controllers import main_controller
+
+from models.main_model import MainModel
+from models.config import Config
+
+from controllers.main_controller import MainController
 
 
 def test_config():
-    """Configeration function can run"""
-    model_test = main_model.MainModel()
-    controller_test = main_controller.MainController(model_test)
+    model_test = MainModel()
+    controller_test = MainController(model_test)
 
-    configuration = config.Config(controller_test)
+    config_test = Config(controller_test)

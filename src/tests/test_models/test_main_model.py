@@ -2,8 +2,8 @@
 Tests for main_model.py
 """
 
-from models import main_model
+from models.main_model import MainModel
 
 
 def test_main_model():
-    model_test = main_model.MainModel()
+    model_test = MainModel()

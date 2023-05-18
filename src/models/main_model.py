@@ -12,6 +12,7 @@ class MainModel(QObject):
     This model inherits from QObject so it can use signals
     to communicate with the views
     """
+
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.dicom_directory = None

@@ -2,8 +2,8 @@
 Tests for dicom.py
 """
 
-from models import dicom
+from models.dicom import DicomParser
 
 
 def test_dicom():
-    """Note"""
+    """ """

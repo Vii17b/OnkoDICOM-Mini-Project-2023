@@ -9,8 +9,7 @@ class ImageView(QWidget):
     """Class for the image popup"""
 
     def __init__(self, controller):
-
-        """ Creates the structure for the image window"""
+        """Creates the structure for the image window"""
 
         super().__init__()
 
@@ -22,7 +21,8 @@ class ImageView(QWidget):
         self.slider = QSlider(self, QtCore.Qt.Horizontal)
         self.slider.setOrientation(QtCore.Qt.Horizontal)
         self.slider.sliderMoved.connect(
-            lambda: controller.change_image_index(self.slider.value()-1))
+            lambda: controller.change_image_index(self.slider.value() - 1)
+        )
         self.slider.setMinimumSize(QtCore.QSize(500, 10))
 
         # Create layout
@@ -33,8 +33,7 @@ class ImageView(QWidget):
         self.setLayout(self.layout)
 
     def update(self, img, title):
-
-        """ Updates the image window"""
+        """Updates the image window"""
 
         self.image.setPixmap(img)
         self.image_title.setText(title)

@@ -10,3 +10,7 @@ from views.main_view import MainView
 def test_main_view(qtbot):
     model_test = MainModel()
     controller_test = MainController(model_test)
+
+    view_test = MainView(controller_test)
+
+    view_test.selection()

@@ -2,11 +2,13 @@
 Tests for main_controller.py
 """
 
-from models import main_model
-from controllers import main_controller
+from models.main_model import MainModel
+from controllers.main_controller import MainController
 
 
 def test_main_controller(qtbot):
-    model_test = main_model.MainModel()
+    model_test = MainModel()
 
-    controller_test = main_controller.MainController(model_test)
+    controller_test = MainController(model_test)
+
+    controller_test.check_config()
