@@ -3,6 +3,8 @@ Tests for main.py
 """
 
 import pytest
+
+import sys
 from PySide6.QtWidgets import QApplication
 
 from main import App
@@ -10,8 +12,7 @@ from main import App
 
 @pytest.fixture
 def app_test():
-    app_test = App(QApplication)
-    QApplication.addWidget(app_test)
+    app_test = App(sys_args)
     return app_test
 
 
