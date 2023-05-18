@@ -22,8 +22,7 @@ class DicomParser:
         Attempts to parse the given directory as a DICOM file
         """
         self.files = list(
-            dcmread(file_dir + "/" + f)
-            for f in self.get_dcm_from_file(file_dir)
+            dcmread(file_dir + "/" + f) for f in self.get_dcm_from_file(file_dir)
         )
         self.num_images = len(self.files)
         if self.num_images == 0:
