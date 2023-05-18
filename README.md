@@ -77,6 +77,8 @@ Go to the directory that contain the Mini Project
 
 `cd OnkoDICOM-Mini-Project-2023`
 
+Initiate the virtual environment using
+
 `poetry shell`
 
 Install the requirements
@@ -88,6 +90,14 @@ Run the program
 `python3 main.py`
 
 ## Unit Test
+
+All testing is to be done in the virtual environment from the Mini Project directory (clone from github, instruction above), if you are not in the directory, move to the directoy by 
+
+`cd OnkoDICOM-Mini-Project-2023`
+
+Initiate the virtual environment using
+
+`poetry shell`
 
 Test code coverage report with Pytest use this command:
 
