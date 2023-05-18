@@ -86,3 +86,18 @@ Install the requirements
 Run the program
 
 `python3 main.py`
+
+## Unit Test
+
+Test code coverage report with Pytest use this command:
+
+`pytest --cov=src`
+
+Test for Pylint complience:
+
+`pylint --extension-pkg-whitelist=PyQt6,PySide6 src/`
+
+Test for Pycodestyle complience:
+
+`pycodestyle --show-source --show-pep8 src/`
+
