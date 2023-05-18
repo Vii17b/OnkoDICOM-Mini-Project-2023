@@ -9,8 +9,8 @@ from main import App
 
 
 @pytest.fixture
-def app_test(QApplication):
-    app_test = App()
+def app_test():
+    app_test = App(QApplication)
     QApplication.addWidget(app_test)
     return app_test
 
