@@ -11,7 +11,7 @@ from main import App
 @pytest.fixture
 def app_test(QApplication):
     app_test = App()
-    qtbot.addWidget(app_test)
+    QApplication.addWidget(app_test)
     return app_test
 
 
