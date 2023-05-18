@@ -2,7 +2,7 @@
 Tests for main_model.py
 """
 
-from models import main_model
+from src.models import main_model
 
 
 def test_main_model():
