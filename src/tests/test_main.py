@@ -12,7 +12,7 @@ from main import App
 
 @pytest.fixture
 def app_test():
-    app_test = App()
+    app_test = App().__init__(sys_args)
     return app_test
 
 
