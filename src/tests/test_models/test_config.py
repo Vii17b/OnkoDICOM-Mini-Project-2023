@@ -2,9 +2,9 @@
 Tests for config.py
 """
 from os.path import dirname
-from src.models import main_model
-from src.models import config
-from src.controllers import main_controller
+from models import main_model
+from models import config
+from controllers import main_controller
 
 
 def test_config():
