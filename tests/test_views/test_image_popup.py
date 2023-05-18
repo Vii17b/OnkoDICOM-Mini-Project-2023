@@ -8,5 +8,6 @@ from src.views.image_popup import ImageView
 
 
 def test_image(qtbot):
-    model = main_model.MainModel()
-    controller = main_controller.MainController(model)
+    model_test = main_model.MainModel()
+    controller_test = main_controller.MainController(model_test)
+    main_view_test = MainView(controller_test)
