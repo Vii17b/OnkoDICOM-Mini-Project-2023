@@ -14,7 +14,3 @@ from main import App
 def app_test():
     app_test = App(sys.argv)
     return app_test
-
-
-def test_startup(app_test):
-    pass
