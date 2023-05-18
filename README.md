@@ -14,7 +14,7 @@ PySide6 programme opens DICOM file and display the images.
 - Unit test with pytest ((80% test code coverage)
 
 ## Instructions on how to run (on Ubuntu)
-Mini project programme requires python3-dev, git and poetry installed and can be installed by running these commands in the terminal.
+Mini project programme requires python3-dev, git and poetry installed and can be installed by running these commands in the terminal on virtual box.
 
 `sudo apt update`
 
