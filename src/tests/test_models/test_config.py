@@ -9,9 +9,7 @@ from controllers import main_controller
 
 def test_config():
     """Configeration function can run"""
-    model = main_model.MainModel()
+    model_test = main_model.MainModel()
+    controller_test = main_controller.MainController(model_test)
 
-    controller = main_controller.MainController(model)
-    controller.change_selected_directory("dicom_file")
-
-    configuration = config.Config(controller)
+    configuration = config.Config(controller_test)
