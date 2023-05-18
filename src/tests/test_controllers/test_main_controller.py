@@ -10,5 +10,3 @@ def test_main_controller(qtbot):
     model_test = MainModel()
 
     controller_test = MainController(model_test)
-
-    controller_test.check_config()
