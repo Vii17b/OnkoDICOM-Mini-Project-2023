@@ -8,7 +8,7 @@ from views.image_popup import ImageView
 
 
 def test_image_popup():
-    model_test = main_model.MainModel()
-    controller_test = main_controller.MainController(model_test)
+    model_test = MainModel()
+    controller_test = MainController(model_test)
 
     image_view_test = ImageView(controller_test)
