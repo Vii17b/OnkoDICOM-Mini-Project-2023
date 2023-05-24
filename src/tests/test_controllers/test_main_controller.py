@@ -2,6 +2,7 @@
 Tests for main_controller.py
 """
 
+
 from models.main_model import MainModel
 from controllers.main_controller import MainController
 
