@@ -5,9 +5,9 @@ Instantiates QApplication class, and execute
 import sys
 from PySide6.QtWidgets import QApplication
 
-from models.main_model import MainModel
-from views.main_view import MainView
-from controllers.main_controller import MainController
+from src.models.main_model import MainModel
+from src.views.main_view import MainView
+from src.controllers.main_controller import MainController
 
 
 class App(QApplication):

@@ -4,7 +4,7 @@ Tests for main.py
 
 import pytest
 import sys
-from main import App
+from src.main import App
 
 
 sys.path.insert(0, "./src")

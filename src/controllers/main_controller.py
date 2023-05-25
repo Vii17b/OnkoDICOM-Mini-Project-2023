@@ -16,10 +16,10 @@ controller/main_controller.py
 import os
 from PySide6.QtCore import QObject
 
-from models.dicom import DicomParser
-from models.config import Config
-from views.image_popup import ImageView
-from views.directory_popup import DirectoryView
+from src.models.dicom import DicomParser
+from src.models.config import Config
+from src.views.image_popup import ImageView
+from src.views.directory_popup import DirectoryView
 
 
 class MainController(QObject):

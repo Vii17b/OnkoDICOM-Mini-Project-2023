@@ -2,9 +2,9 @@
 Tests for main_view.py
 """
 
-from models.main_model import MainModel
-from controllers.main_controller import MainController
-from views.main_view import MainView
+from src.models.main_model import MainModel
+from src.controllers.main_controller import MainController
+from src.views.main_view import MainView
 
 
 def test_main_view(qtbot):

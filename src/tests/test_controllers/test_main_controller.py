@@ -3,8 +3,8 @@ Tests for main_controller.py
 """
 
 
-from models.main_model import MainModel
-from controllers.main_controller import MainController
+from src.models.main_model import MainModel
+from src.controllers.main_controller import MainController
 
 
 def test_main_controller(qtbot):

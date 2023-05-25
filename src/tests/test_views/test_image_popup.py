@@ -2,9 +2,9 @@
 Tests for image_popup.py
 """
 
-from models.main_model import MainModel
-from controllers.main_controller import MainController
-from views.image_popup import ImageView
+from src.models.main_model import MainModel
+from src.controllers.main_controller import MainController
+from src.views.image_popup import ImageView
 
 
 def test_image_popup():

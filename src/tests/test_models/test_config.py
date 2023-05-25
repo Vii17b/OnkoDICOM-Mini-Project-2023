@@ -2,10 +2,10 @@
 Tests for config.py
 """
 
-from models.main_model import MainModel
-from models.config import Config
+from src.models.main_model import MainModel
+from src.models.config import Config
 
-from controllers.main_controller import MainController
+from src.controllers.main_controller import MainController
 
 
 def test_config():
