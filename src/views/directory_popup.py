@@ -1,7 +1,13 @@
 """First time popup if the Config cannot find the hidden file
 Updates the Config accordingly"""
 
-from PySide6.QtWidgets import QDialog, QFileDialog, QLabel, QPushButton, QHBoxLayout
+from PySide6.QtWidgets import (
+    QDialog,
+    QFileDialog,
+    QLabel,
+    QPushButton,
+    QHBoxLayout
+)
 from PySide6.QtCore import QDir
 
 
