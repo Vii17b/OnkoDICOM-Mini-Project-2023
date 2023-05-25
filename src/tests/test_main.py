@@ -3,12 +3,11 @@ Tests for main.py
 """
 
 import pytest
-
 import sys
+from main import App
+
 
 sys.path.insert(0, "./src")
-
-from main import App
 
 
 @pytest.fixture
