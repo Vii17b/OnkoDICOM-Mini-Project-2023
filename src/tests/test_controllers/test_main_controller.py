@@ -16,6 +16,5 @@ def test_main_controller(qtbot):
     controller_test._dicom_parser
     controller_test.go_to_next_image()
     controller_test.go_to_preivous_image()
-    
     controller_test.open_image_viewer()
     controller_test._image_popup.close()
