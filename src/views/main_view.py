@@ -50,7 +50,12 @@ class MainView(QMainWindow):
         Opens the directory selection, returns the directory
         """
 
+        if self.controller.dicom_parser == None:
+            # This realistically shouldn't happen
+            # However, pytest.
+            return False
         directory = QFileDialog.getExistingDirectory(
             self, "Select Directory", QDir.currentPath()
         )
         self.controller.change_selected_directory(directory)
+        return True

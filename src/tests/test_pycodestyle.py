@@ -1,3 +1,7 @@
+"""
+Tests pycodestyle complience
+"""
+
 # Import needed package
 import pycodestyle
 

@@ -7,10 +7,10 @@ from src.controllers.main_controller import MainController
 from src.views.main_view import MainView
 
 
-def test_main_view(qtbot):
+def test_main_view_no_parser(qtbot):
     model_test = MainModel()
     controller_test = MainController(model_test)
 
     view_test = MainView(controller_test)
 
-    view_test.selection()
+    assert view_test.selection() == False

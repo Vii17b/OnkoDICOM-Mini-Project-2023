@@ -2,15 +2,18 @@
 Tests for main.py
 """
 
-import pytest
 import sys
-from src.main import App
+from src.main import App, run_main
 
 
 sys.path.insert(0, "./src")
 
 
-@pytest.fixture
-def app_test():
+def test_main():
+    """
+    This test needs changing
+    If this is still here, blame Daniel
+    """
+
     app_test = App(sys.argv)
-    return app_test
+    app_test.exit(0)

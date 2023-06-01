@@ -23,6 +23,10 @@ class App(QApplication):
         self.view.show()
 
 
-if __name__ == "__main__":
+def run_main():
+    """
+    To be called from MiniProject.py
+    Seems dumb, but it prevents src.XX from having import errors
+    """
     app = App(sys.argv)
     sys.exit(app.exec())

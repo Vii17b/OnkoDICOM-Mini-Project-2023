@@ -90,7 +90,3 @@ class Config:
         """
         self.write_config(dbfile, 0, home_dir, home_dir)
         self.send_results(dbfile)
-
-
-if __name__ == "__main__":
-    con = Config()

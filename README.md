@@ -87,7 +87,7 @@ Install the requirements
 
 Run the program
 
-`python3 main.py`
+`python3 MiniProject.py`
 
 ## Unit Test
 

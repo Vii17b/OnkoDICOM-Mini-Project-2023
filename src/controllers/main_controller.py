@@ -33,6 +33,7 @@ class MainController(QObject):
         # models
         self._main_model = model
         self._config = Config(self)
+        self._dicom_parser = None
 
         # views
         self._image_popup = None
@@ -70,56 +71,48 @@ class MainController(QObject):
         """
         return self._dicom_parser
 
-    def change_selected_directory(self, dir):
+    def change_selected_directory(self, file_dir):
         """
         Check the directory is valid, then update the model
         """
         old_dir = self._main_model.dicom_directory
-        if os.path.exists(dir):
-            self._main_model.dicom_directory = dir
+        if os.path.exists(file_dir):
+            self._main_model.dicom_directory = file_dir
             self._main_model.image_index = 0
-            if not self._dicom_parser.read_directory(dir):
-                print(f"{dir} is not a valid file directory")
+            if not self._dicom_parser.read_directory(file_dir):
+                print(f"{file_dir} is not a valid file directory")
                 self._dicom_parser.read_directory(old_dir)
                 return False
             self.update_image_view()
             return True
-        else:
-            print(f"{dir} is not a valid file directory.")
-            return False
+        print(f"{file_dir} is not a valid file directory.")
+        return False
 
     def change_image_index(self, index):
         """
         Update the index of the currently selected image
         """
         num_img = self._dicom_parser.num_images
-        if index >= 0 and index < num_img:
+        if 0 <= index < num_img:
             self._main_model.image_index = index
             self.update_image_view()
             return index
-        else:
-            print(f"Index {index} out of range of dicom images ({num_img})")
-            return -1
-
-    def go_to_next_image(self):
-        self.change_image_index(self._main_model.image_index + 1)
-
-    def go_to_preivous_image(self):
-        self.change_image_index(self._main_model.image_index - 1)
+        print(f"Index {index} out of range of dicom images ({num_img})")
+        return -1
 
     def default_directory_prompt(self, config, dbfile):
         """
         Prompts the user to supply the default directory
         Updates Config from the DirectoryView
         """
-        popup = DirectoryView(config, dbfile)
-        popup.exec()
+        self.popup = DirectoryView(config, dbfile)
+        self.popup.exec()
 
     def check_config(self):
         """
         Checks the Config object and updates _main_model accordingly
         """
-        default_dir = self._config().default_dir
+        default_dir = self._config.default_dir
         self.change_selected_directory(default_dir)
 
     def open_image_viewer(self):
@@ -140,6 +133,8 @@ class MainController(QObject):
         """
         if not self._image_popup:
             return False
+        if self._dicom_parser == None:
+            return False
 
         # I know the indexing is wrong, but if it's set to anything but these
         # exact values it runs HORRIBLY
@@ -150,3 +145,4 @@ class MainController(QObject):
         # self._image_popup.slider.setValue(index+1)
         title = f"Image {index+1}/{self._dicom_parser.num_images}"
         self._image_popup.update(self._dicom_parser.get_image(index), title)
+        return True
